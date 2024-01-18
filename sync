@@ -1,0 +1,6 @@
+clear
+echo Start
+DIR_NAME=$(dirname "$0" | tr ' ' '\ ')
+cd "$DIR_NAME"
+git checkout gh-pages
+printf "${GREEN}Finish${NC}\n"
