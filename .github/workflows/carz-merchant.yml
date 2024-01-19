@@ -11,12 +11,19 @@ jobs:
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v3
+        path: core
+        ref: core
+
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+        ref: carz-merchant
+        path: app
 
       - name: npm install
-        run: npm install
+        run: cd core &&  npm install
 
       - name: npm start
-        run: npm start
+        run: cd core && npm start
 
       - name: npm start
-        run: cd output && ls
+        run: cd core/output && ls
