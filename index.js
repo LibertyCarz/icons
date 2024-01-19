@@ -4,8 +4,8 @@ const pipeline = require("icomoon-generator");
 pipeline({
   // icons: ["SVG"],
   // icons: ["SVG/account.svg", "SVG/add.svg"],
-  svgDir: "SVG",
-  names: ["account", "add"],
+  svgDir: "../app/SVG",
+  // names: ["account", "add"],
   selectionPath: "selection.json",
   outputDir: "output",
   forceOverride: true,
