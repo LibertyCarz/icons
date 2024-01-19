@@ -12,20 +12,23 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v4
         with:
-          path: core
           ref: core
+          path: core
 
       - name: Check out Git repository
         uses: actions/checkout@v4
         with:
-          path: app
           ref: carz-merchant
+          path: app
 
       - name: npm install
         run: cd core &&  npm install
 
-      - name: npm start
-        run: cd core && npm start
+      - run: ls
+          
 
-      - name: npm start
-        run: cd core/output && ls
+      # - name: npm start
+      #   run: cd core && npm start
+
+      # - name: npm start
+      #   run: cd core/output && ls
