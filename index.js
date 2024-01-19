@@ -7,7 +7,7 @@ pipeline({
   svgDir: "../app/SVG",
   // names: ["account", "add"],
   selectionPath: "selection.json",
-  outputDir: "../app/output",
+  outputDir: "output",
   forceOverride: true,
   visible: false,
   whenFinished(result) {
