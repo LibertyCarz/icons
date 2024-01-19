@@ -24,11 +24,9 @@ jobs:
       - name: npm install
         run: cd core &&  npm install
 
-      - run: ls
-          
 
-      # - name: npm start
-      #   run: cd core && npm start
+      - name: npm start
+        run: cd core && npm start
 
-      # - name: npm start
-      #   run: cd core/output && ls
+      - name: ls file
+        run: cd core/output && ls
