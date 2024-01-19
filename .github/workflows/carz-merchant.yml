@@ -3,7 +3,7 @@ name: Automatic issue responses
 on:
   push:
     branches:
-      - feat/auto-generate-icon
+      - carz-merchant
 jobs:
   build:
     name: Build iconmoon
