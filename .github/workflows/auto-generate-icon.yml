@@ -17,3 +17,6 @@ jobs:
 
       - name: npm start
         run: npm start
+
+      - name: npm start
+        run: cd output && ls
