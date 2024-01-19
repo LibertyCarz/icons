@@ -1,8 +1,10 @@
-const pipeline = require("icomoon-cli");
+// const pipeline = require("icomoon-cli");
+const pipeline = require("icomoon-generator");
 
 pipeline({
   // icons: ["SVG"],
-  icons: ["SVG/account.svg", "SVG/add.svg"],
+  // icons: ["SVG/account.svg", "SVG/add.svg"],
+  svgDir: "SVG",
   names: ["account", "add"],
   selectionPath: "selection.json",
   outputDir: "output",
