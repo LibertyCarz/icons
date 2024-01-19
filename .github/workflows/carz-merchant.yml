@@ -10,14 +10,16 @@ jobs:
     runs-on: [macos-latest]
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v3
-        path: 'core'
-        ref: core
+        uses: actions/checkout@v4
+        with:
+          path: core
+          ref: core
 
       - name: Check out Git repository
-        uses: actions/checkout@v3
-        ref: carz-merchant
-        path: app
+        uses: actions/checkout@v4
+        with:
+          path: app
+          ref: carz-merchant
 
       - name: npm install
         run: cd core &&  npm install
