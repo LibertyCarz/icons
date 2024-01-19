@@ -5,9 +5,12 @@ on:
     branches:
       - feat/auto-generate-icon
 jobs:
-  hello-world:
-    name: Hello World
+  build:
+    name: Build iconmoon
     runs-on: ubuntu-22.04
     steps:
-      - name: Hello World
-        run: echo hello world
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+
+      - name: npm install
+        run: npm install
