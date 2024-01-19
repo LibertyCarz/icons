@@ -2,5 +2,3 @@
 .temp/merchant
 .key/id_rsa
 .DS_Store
-node_modules
-output
