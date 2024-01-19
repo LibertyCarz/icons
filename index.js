@@ -6,7 +6,7 @@ pipeline({
   selectionPath: "selection.json",
   outputDir: "output",
   forceOverride: true,
-  // visible: true,
+  visible: true,
   whenFinished(result) {
     // you can get the absolute path of output directory via result.outputDir
   },
