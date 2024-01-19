@@ -1,0 +1,14 @@
+diff --git a/node_modules/icomoon-generator/dist/cjs/index.js b/node_modules/icomoon-generator/dist/cjs/index.js
+index 9a1195e..3de2133 100644
+--- a/node_modules/icomoon-generator/dist/cjs/index.js
++++ b/node_modules/icomoon-generator/dist/cjs/index.js
+@@ -444,7 +444,8 @@ function _pipeline() {
+                         break;
+                       }
+ 
+-                      _context2.next = 6;
++                      // _context2.next = 6;
++                      _context2.next = 12;
+                       return whenFinished({
+                         outputDir: outputDir
+                       });
