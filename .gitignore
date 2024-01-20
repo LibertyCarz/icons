@@ -1,4 +1,3 @@
-.temp/customer
-.temp/merchant
+.temp
 .key/id_rsa
 .DS_Store

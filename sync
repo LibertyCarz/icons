@@ -11,12 +11,14 @@ cd "$DIR_NAME"
 git config user.name "GitHub Actions" --local
 git config user.email "41898282+github-actions[bot]@users.noreply.github.com" --local
 git remote set-url origin git@github.com:LibertyCarz/icons.git
+mkdir .temp
 rm -rf .temp/SVG
-cp SVG .temp
+mv SVG .temp
 git reset --hard carz-merchant
 git pull origin carz-merchant --ff
 rm -rf SVG
-cp .temp/SVG ./
+mv .temp/SVG ./
+rm -rf .temp
 git add -A
 git commit -m ':white_check_mark: update icon'
 git push origin gh-pages
