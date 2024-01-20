@@ -49,9 +49,6 @@ jobs:
           ID_RSA: ${{ secrets.ID_RSA }}
         run: echo "$ID_RSA" > gh-pages/.key/id_rsa
 
-      - name: Echo id_rsa
-        run: cat gh-pages/.key/id_rsa
-
       - name: Push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
