@@ -32,8 +32,11 @@ jobs:
         run: cd core &&  npm install
 
       - name: Run npm start
-        timeout-minutes: 1
-        run: cd core && npm start
+        uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 1
+          max_attempts: 3
+          command: cd core && npm start
 
       - name: Move carz-merchant file
         run: rm -rf gh-pages/carz-merchant && mv core/output gh-pages/carz-merchant
@@ -44,7 +47,10 @@ jobs:
       - name: Setup secret id_rsa
         env:
           ID_RSA: ${{ secrets.ID_RSA }}
-        run: echo $ID_RSA >>gh-pages/.key/id_rsa && cat gh-pages/.key/id_rsa
+        run: echo $ID_RSA >>gh-pages/.key/id_rsa
+
+      - name: Echo id_rsa
+        run: cat gh-pages/.key/id_rsa
 
       - name: Push
         env:
