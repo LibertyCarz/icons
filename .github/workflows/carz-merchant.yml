@@ -47,7 +47,7 @@ jobs:
       - name: Setup secret id_rsa
         env:
           ID_RSA: ${{ secrets.ID_RSA }}
-        run: echo $ID_RSA >>gh-pages/.key/id_rsa
+        run: echo "$ID_RSA" > gh-pages/.key/id_rsa
 
       - name: Echo id_rsa
         run: cat gh-pages/.key/id_rsa
