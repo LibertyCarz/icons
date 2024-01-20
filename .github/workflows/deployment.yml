@@ -1,8 +1,9 @@
 ---
-name: carz merchant
+name: Deployment File
 on:
   push:
     branches:
+      - carz-customer
       - carz-merchant
 jobs:
   hello-world:
