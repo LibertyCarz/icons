@@ -50,7 +50,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd gh-pages
-          DIR_NAME=$(dirname "$0")
+          DIR_NAME=$(pwd)
           chmod 400 "$DIR_NAME/.key/id_rsa"
           export GIT_SSH_COMMAND="ssh -i $DIR_NAME/.key/id_rsa -o IdentitiesOnly=yes"
           git config user.name "GitHub Actions" --local
