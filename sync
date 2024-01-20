@@ -22,5 +22,5 @@ mv .temp/SVG ./
 rm -rf .temp
 git add -A
 git commit -m ':white_check_mark: update icon'
-git push origin gh-pages
+git push origin carz-merchant
 printf "${GREEN}Finish${NC}\n"
