@@ -32,7 +32,7 @@ jobs:
         id: cache-node-modules
         uses: actions/cache@v4
         with:
-          path: prime-numbers
+          path: node_modules
           key: package-lock-cache-key
 
       - name: Run npm install
