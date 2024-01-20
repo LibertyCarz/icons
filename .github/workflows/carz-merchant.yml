@@ -32,6 +32,7 @@ jobs:
         run: cd core &&  npm install
 
       - name: Run npm start
+        timeout-minutes: 1
         run: cd core && npm start
 
       - name: Move carz-merchant file
