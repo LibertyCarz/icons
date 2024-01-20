@@ -15,7 +15,7 @@ mkdir .temp
 rm -rf .temp/SVG
 mv SVG .temp
 git reset --hard origin/carz-merchant
-git pull origin carz-merchant --ff
+git pull origin carz-merchant
 rm -rf SVG
 mv .temp/SVG ./
 rm -rf .temp
