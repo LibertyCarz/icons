@@ -1,5 +1,5 @@
 ---
-name: Automatic deployment icons for Carz Merchant
+name: Automatic deployment icons for Carz Customer
 on:
   push:
     branches:
@@ -43,7 +43,7 @@ jobs:
 
       - name: Create index file
         run: cp gh-pages/carz-customer/demo.html gh-pages/carz-customer/index.html
-      
+
       - name: Setup secret id_rsa
         env:
           ID_RSA: ${{ secrets.ID_RSA }}
@@ -62,5 +62,5 @@ jobs:
           git remote set-url origin git@github.com:LibertyCarz/icons.git
           git status
           git add -A
-          git commit -m ':white_check_mark: update carz merchant icon'
+          git commit -m ':white_check_mark: update carz customer icon'
           git push origin gh-pages

@@ -15,7 +15,7 @@ mkdir .temp
 rm -rf .temp/SVG
 mv SVG .temp
 git reset --hard origin/carz-customer
-git prune                    
+git prune
 git pull origin carz-customer
 rm -rf SVG
 mv .temp/SVG ./
