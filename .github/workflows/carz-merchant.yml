@@ -36,6 +36,9 @@ jobs:
       - name: Move carz-merchant file
         run: rm -rf gh-pages/carz-merchant && mv core/output gh-pages/carz-merchant
 
+      - name: Create index file
+        run: cp gh-pages/carz-merchant/demo.html gh-pages/carz-merchant/index.html
+
       - name: Push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
