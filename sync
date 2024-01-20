@@ -14,7 +14,7 @@ git remote set-url origin git@github.com:LibertyCarz/icons.git
 mkdir .temp
 rm -rf .temp/SVG
 mv SVG .temp
-git reset --hard carz-merchant
+git reset --hard origin/carz-merchant
 git pull origin carz-merchant --ff
 rm -rf SVG
 mv .temp/SVG ./
