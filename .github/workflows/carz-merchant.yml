@@ -8,6 +8,7 @@ jobs:
   build:
     name: Build iconmoon
     runs-on: [macos-latest]
+    timeout-minutes: 5
     steps:
       - name: Check out Git repository (Core branch)
         uses: actions/checkout@v4
@@ -40,7 +41,9 @@ jobs:
         run: cp gh-pages/carz-merchant/demo.html gh-pages/carz-merchant/index.html
       
       - name: Setup secret id_rsa
-        run: echo ${{ secrets.ID_RSA }} >>gh-pages/.key/id_rsa && cat gh-pages/.key/id_rsa
+        env:
+          ID_RSA: ${{ secrets.ID_RSA }}
+        run: echo $ID_RSA >>gh-pages/.key/id_rsa && cat gh-pages/.key/id_rsa
 
       - name: Push
         env:
