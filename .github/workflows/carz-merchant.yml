@@ -7,8 +7,7 @@ on:
 jobs:
   build:
     name: Build iconmoon
-    # runs-on: [macos-latest]
-    runs-on: [self-hosted, macos, hippo-alpha]
+    runs-on: [macos-latest]
     timeout-minutes: 5
     steps:
       - name: Check out Git repository (Core branch)
