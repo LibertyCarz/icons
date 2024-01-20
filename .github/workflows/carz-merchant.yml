@@ -1,5 +1,5 @@
 ---
-name: Automatic issue responses
+name: Automatic deployment icons for Carz Merchant
 on:
   push:
     branches:
@@ -32,9 +32,6 @@ jobs:
 
       - name: Run npm start
         run: cd core && npm start
-
-      - name: Move carz-merchant file
-        run: rm -rf gh-pages/carz-merchant && mv core/output gh-pages/carz-merchant
 
       - name: Move carz-merchant file
         run: rm -rf gh-pages/carz-merchant && mv core/output gh-pages/carz-merchant
