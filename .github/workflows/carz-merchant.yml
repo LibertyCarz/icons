@@ -3,7 +3,7 @@ name: Automatic deployment icons for Carz Merchant
 on:
   push:
     branches:
-      - carz-merchant
+      - carz-customer
 jobs:
   build:
     name: Build iconmoon
@@ -16,10 +16,10 @@ jobs:
           ref: core
           path: core
 
-      - name: Check out Git repository (carz-merchant branch)
+      - name: Check out Git repository (carz-customer branch)
         uses: actions/checkout@v4
         with:
-          ref: carz-merchant
+          ref: carz-customer
           path: app
 
       - name: Check out Git repository (gh-pages branch)
@@ -38,11 +38,11 @@ jobs:
           max_attempts: 3
           command: cd core && npm start
 
-      - name: Move carz-merchant file
-        run: rm -rf gh-pages/carz-merchant && mv core/output gh-pages/carz-merchant
+      - name: Move carz-customer file
+        run: rm -rf gh-pages/carz-customer && mv core/output gh-pages/carz-customer
 
       - name: Create index file
-        run: cp gh-pages/carz-merchant/demo.html gh-pages/carz-merchant/index.html
+        run: cp gh-pages/carz-customer/demo.html gh-pages/carz-customer/index.html
       
       - name: Setup secret id_rsa
         env:
