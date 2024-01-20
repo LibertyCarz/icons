@@ -1,5 +1,5 @@
 ---
-name: Automatic deployment icons for Carz Customer
+name: Deployment
 on:
   push:
     branches:
