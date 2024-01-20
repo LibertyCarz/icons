@@ -1,0 +1,32 @@
+---
+name: Automatic issue responses
+on:
+  push:
+    branches:
+      - carz-merchant
+jobs:
+  build:
+    name: Build iconmoon
+    runs-on: [macos-latest]
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+        with:
+          ref: core
+          path: core
+
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+        with:
+          ref: carz-merchant
+          path: app
+
+      - name: npm install
+        run: cd core &&  npm install
+
+
+      - name: npm start
+        run: cd core && npm start
+
+      - name: ls file
+        run: cd core && cd output && ls
