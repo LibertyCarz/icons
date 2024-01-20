@@ -15,12 +15,12 @@ Single-colored icons can be modified like so:
 }
 ========================================== */
 
-.icon-send {
-  width: 1.0498046875em;
-}
-
 .icon-history {
   width: 1.09375em;
+}
+
+.icon-send {
+  width: 1.0625em;
 }
 
 .icon-sortby {
