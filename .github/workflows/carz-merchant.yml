@@ -33,7 +33,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: prime-numbers
-          key: package-lock-cache-key-${{ hashFiles('package-lock.json') }}
+          key: package-lock-cache-key
 
       - name: Run npm install
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
