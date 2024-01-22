@@ -19,4 +19,4 @@ jobs:
         uses: PacificPromise/macos-telegram-action@main
         with:
           type: channel
-          message: "Finish deployment Icons set: https://icons.libertycarz.com/"
+          message: "🏁 - Finish deployment Icons set: https://icons.libertycarz.com/"
