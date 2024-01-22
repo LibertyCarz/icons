@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - carz-merchant
+
+env:
+  TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+  TELEGRAM_CHANNEL_ID: ${{ vars.TELEGRAM_CHANNEL_ID }}
+
 jobs:
   build:
     name: Build iconmoon
@@ -27,6 +32,12 @@ jobs:
         with:
           ref: gh-pages
           path: gh-pages
+
+      - name: Send telegram message
+        uses: PacificPromise/macos-telegram-action@main
+        with:
+          type: channel
+          message: "🎬 - Start deploy icons Carz Merchant"
 
       - name: Cache node_modules
         id: cache-node-modules
@@ -72,3 +83,16 @@ jobs:
           git add -A
           git commit -m ':white_check_mark: update carz merchant icon'
           git push origin gh-pages
+
+      - name: Send success telegram message
+        uses: PacificPromise/macos-telegram-action@main
+        with:
+          type: channel
+          message: "✅ - Success build icons Carz Merchant"
+
+      - name: Send message failure
+        if: failure()
+        uses: PacificPromise/macos-telegram-action@main
+        with:
+          type: channel
+          message: "💥 - Failure build icons Carz Merchant"
