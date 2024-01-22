@@ -3,8 +3,7 @@ name: Deployment File
 on:
   push:
     branches:
-      - carz-customer
-      - carz-merchant
+      - main
 jobs:
   hello-world:
     name: Hello World
