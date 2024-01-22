@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - carz-customer
+
+env:
+  TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+  TELEGRAM_CHANNEL_ID: ${{ vars.TELEGRAM_CHANNEL_ID }}
+      
 jobs:
   build:
     name: Build iconmoon
