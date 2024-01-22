@@ -3,7 +3,7 @@ name: Deployment
 on:
   push:
     branches:
-      - carz-merchant
+      - sample
 jobs:
   build:
     name: Build iconmoon
@@ -16,10 +16,10 @@ jobs:
           ref: core
           path: core
 
-      - name: Check out Git repository (carz-merchant branch)
+      - name: Check out Git repository (sample branch)
         uses: actions/checkout@v4
         with:
-          ref: carz-merchant
+          ref: sample
           path: app
 
       - name: Check out Git repository (gh-pages branch)
@@ -46,11 +46,11 @@ jobs:
           max_attempts: 3
           command: cd core && npm start
 
-      - name: Move carz-merchant file
-        run: rm -rf gh-pages/carz-merchant && mv core/output gh-pages/carz-merchant
+      - name: Move sample file
+        run: rm -rf gh-pages/sample && mv core/output gh-pages/sample
 
       - name: Create index file
-        run: cp gh-pages/carz-merchant/demo.html gh-pages/carz-merchant/index.html
+        run: cp gh-pages/sample/demo.html gh-pages/sample/index.html
 
       - name: Setup secret id_rsa
         env:
@@ -70,5 +70,5 @@ jobs:
           git remote set-url origin git@github.com:LibertyCarz/icons.git
           git status
           git add -A
-          git commit -m ':white_check_mark: update carz merchant icon'
+          git commit -m ':white_check_mark: update sample icon'
           git push origin gh-pages

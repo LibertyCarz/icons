@@ -14,13 +14,13 @@ git remote set-url origin git@github.com:LibertyCarz/icons.git
 mkdir .temp
 rm -rf .temp/SVG
 mv SVG .temp
-git reset --hard origin/carz-merchant
+git reset --hard origin/sample
 git prune                    
-git pull origin carz-merchant
+git pull origin sample
 rm -rf SVG
 mv .temp/SVG ./
 rm -rf .temp
 git add -A
 git commit -m ':white_check_mark: update icon'
-git push origin carz-merchant
+git push origin sample
 printf "${GREEN}Finish${NC}\n"
