@@ -6,10 +6,17 @@ on:
     types:
       - completed
 
+env:
+  TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+  TELEGRAM_CHANNEL_ID: ${{ vars.TELEGRAM_CHANNEL_ID }}
+
 jobs:
   on-success:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - name: Notificaiton
-        run: echo run notificaiton
+      - name: send telegram message
+        uses: PacificPromise/macos-telegram-action@main
+        with:
+          type: channel
+          message: "Finish deployment Icons set: https://icons.libertycarz.com/"
