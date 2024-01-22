@@ -28,6 +28,12 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
+      - name: Send telegram message
+        uses: PacificPromise/macos-telegram-action@main
+        with:
+          type: channel
+          message: "🎬 - Start deploy icons Carz Customer"
+
       - name: Cache node_modules
         id: cache-node-modules
         uses: actions/cache@v4
@@ -72,3 +78,16 @@ jobs:
           git add -A
           git commit -m ':white_check_mark: update carz customer icon'
           git push origin gh-pages
+
+      - name: Send success telegram message
+        uses: PacificPromise/macos-telegram-action@main
+        with:
+          type: channel
+          message: "✅ - Success build icons Carz Customer"
+
+      - name: Send message failure
+        if: failure()
+        uses: PacificPromise/macos-telegram-action@main
+        with:
+          type: channel
+          message: "💥 - Failure build icons Carz Customer"
