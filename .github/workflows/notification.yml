@@ -1,4 +1,4 @@
-name: Dummy Deployment
+name: Notification
 
 on:
   workflow_run:
