@@ -19,5 +19,5 @@ jobs:
       - name: send telegram message
         uses: PacificPromise/macos-telegram-action@main
         with:
-          type: group
+          type: topic
           message: "🏁 - Finish deployment Icons set: https://icons.libertycarz.com/"
