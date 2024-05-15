@@ -7,7 +7,8 @@ on:
 
 env:
   TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-  TELEGRAM_CHANNEL_ID: ${{ vars.TELEGRAM_CHANNEL_ID }}
+  TELEGRAM_GROUP_ID: ${{ vars.TELEGRAM_GROUP_ID }}
+  TELEGRAM_TOPIC_ID: ${{ vars.TELEGRAM_TOPIC_ID }}
 
 jobs:
   build:
@@ -36,7 +37,7 @@ jobs:
       - name: Send telegram message
         uses: PacificPromise/macos-telegram-action@main
         with:
-          type: channel
+          type: topic
           message: "🎬 - Start deploy icons Carz Merchant"
 
       - name: Cache node_modules
@@ -87,12 +88,12 @@ jobs:
       - name: Send success telegram message
         uses: PacificPromise/macos-telegram-action@main
         with:
-          type: channel
+          type: topic
           message: "✅ - Success build icons Carz Merchant"
 
       - name: Send message failure
         if: failure()
         uses: PacificPromise/macos-telegram-action@main
         with:
-          type: channel
+          type: topic
           message: "💥 - Failure build icons Carz Merchant"
