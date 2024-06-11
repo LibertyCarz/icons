@@ -14,7 +14,7 @@ env:
 jobs:
   build:
     name: Build iconmoon
-    runs-on: [macos-latest]
+    runs-on: ubuntu-22.04
     timeout-minutes: 5
     steps:
       - name: Check out Git repository (Core branch)
@@ -41,23 +41,11 @@ jobs:
           type: topic
           message: "🎬 - Start deploy icons"
 
-      - name: Cache node_modules
-        id: cache-node-modules
-        uses: actions/cache@v4
-        with:
-          path: "**/node_modules"
-          key: package-lock-key-cache
-
       - name: Run npm install
-        if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: cd core &&  npm install
+        run: cd core && npm install
 
       - name: Run npm start
-        uses: nick-fields/retry@v2
-        with:
-          timeout_minutes: 1
-          max_attempts: 3
-          command: cd core && npm start
+        run: cd core && npm start
 
       - name: Move sample file
         run: rm -rf gh-pages/sample && mv core/output gh-pages/sample
