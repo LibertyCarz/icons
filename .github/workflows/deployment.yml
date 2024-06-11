@@ -13,7 +13,7 @@ env:
 jobs:
   build:
     name: Build iconmoon
-    runs-on: [macos-latest]
+    runs-on: ubuntu-22.04
     timeout-minutes: 5
     steps:
       - name: Check out Git repository (Core branch)
