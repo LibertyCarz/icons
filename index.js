@@ -1,5 +1,5 @@
 // const pipeline = require("icomoon-cli");
-const pipeline = require("icomoon-generator");
+const pipeline = require("./main");
 
 pipeline({
   // icons: ["SVG"],
