@@ -14,3 +14,15 @@ Single-colored icons can be modified like so:
   color: red;
 }
 ========================================== */
+
+.icon-history {
+  width: 1.09375em;
+}
+
+.icon-send {
+  width: 1.0625em;
+}
+
+.icon-sortby {
+  width: 1.0625em;
+}
