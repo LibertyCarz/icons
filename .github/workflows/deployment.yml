@@ -9,7 +9,7 @@ env:
   TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
   TELEGRAM_GROUP_ID: ${{ vars.TELEGRAM_GROUP_ID }}
   TELEGRAM_TOPIC_ID: ${{ vars.TELEGRAM_TOPIC_ID }}
-      
+
 jobs:
   build:
     name: Build iconmoon
@@ -40,23 +40,11 @@ jobs:
           type: topic
           message: "🎬 - Start deploy icons Carz Customer"
 
-      - name: Cache node_modules
-        id: cache-node-modules
-        uses: actions/cache@v4
-        with:
-          path: "**/node_modules"
-          key: package-lock-key-cache
-
       - name: Run npm install
-        if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: cd core &&  npm install
+        run: cd core && npm install
 
       - name: Run npm start
-        uses: nick-fields/retry@v2
-        with:
-          timeout_minutes: 1
-          max_attempts: 3
-          command: cd core && npm start
+        run: cd core && npm start
 
       - name: Move carz-customer file
         run: rm -rf gh-pages/carz-customer && mv core/output gh-pages/carz-customer
