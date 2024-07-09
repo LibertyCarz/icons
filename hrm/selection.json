@@ -1,0 +1,87 @@
+{
+  "IcoMoonType": "selection",
+  "icons": [
+    {
+      "icon": {
+        "paths": [
+          "M835.2 624c-38.4-38.4-89.6-54.4-156.8-35.2l-240-240 3.2-12.8c12.8-51.2 0-108.8-38.4-147.2-41.6-38.4-96-54.4-147.2-38.4-3.2 0-6.4 3.2-9.6 6.4-3.2 0-3.2 3.2-6.4 6.4 0 3.2 0 6.4 0 9.6s3.2 6.4 6.4 9.6l57.6 57.6c16 19.2 16 48 0 64s-44.8 16-60.8 0l-57.6-57.6c-3.2-3.2-6.4-3.2-9.6-6.4-3.2 0-6.4 0-9.6 0-6.4 3.2-9.6 3.2-9.6 6.4-3.2 3.2-6.4 6.4-6.4 9.6-12.8 51.2 0 105.6 38.4 144s89.6 54.4 156.8 35.2l240 240c-19.2 67.2-3.2 118.4 35.2 156.8s92.8 51.2 144 38.4c3.2 0 6.4-3.2 9.6-6.4s3.2-6.4 6.4-9.6c0-3.2 0-6.4 0-9.6s-3.2-6.4-6.4-9.6l-57.6-57.6c-16-16-16-44.8 0-60.8s44.8-16 60.8 0l57.6 57.6c3.2 3.2 6.4 3.2 9.6 6.4 3.2 0 6.4 0 9.6 0s6.4-3.2 9.6-6.4c3.2-3.2 3.2-6.4 6.4-9.6 19.2-48 3.2-102.4-35.2-140.8z",
+          "M374.4 528l-204.8 204.8c-35.2 35.2-35.2 89.6 0 121.6s89.6 35.2 121.6 0l204.8-204.8-121.6-121.6zM272 787.2c-9.6 9.6-22.4 9.6-32 0s-9.6-22.4 0-32l131.2-131.2c9.6-9.6 22.4-9.6 32 0s9.6 22.4 0 32l-131.2 131.2zM873.6 188.8l-38.4-38.4c-3.2-3.2-6.4-6.4-12.8-6.4-3.2 0-9.6 0-12.8 3.2l-115.2 67.2c-12.8 6.4-12.8 22.4-3.2 35.2l9.6 9.6-144 144 60.8 60.8 144-144 12.8 12.8c9.6 9.6 25.6 6.4 35.2-3.2l67.2-115.2c3.2-3.2 3.2-9.6 3.2-12.8 0-6.4-3.2-9.6-6.4-12.8z"
+        ],
+        "attrs": [
+          {},
+          {}
+        ],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "grid": 0,
+        "tags": [
+          "accessories"
+        ]
+      },
+      "attrs": [
+        {},
+        {}
+      ],
+      "properties": {
+        "order": 2,
+        "id": 0,
+        "name": "accessories",
+        "prevSize": 32
+      },
+      "setIdx": 0,
+      "setId": 0,
+      "iconIdx": 0
+    }
+  ],
+  "height": 1024,
+  "preferences": {
+    "showGlyphs": true,
+    "showQuickUse": true,
+    "showQuickUse2": true,
+    "showSVGs": true,
+    "fontPref": {
+      "prefix": "icon-",
+      "metadata": {
+        "fontFamily": "customer-car",
+        "majorVersion": 1,
+        "minorVersion": 0
+      },
+      "metrics": {
+        "emSize": 1024,
+        "baseline": 6.25,
+        "whitespace": 50
+      },
+      "embed": false,
+      "autoHost": false,
+      "ie7": false,
+      "noie8": true,
+      "showSelector": true,
+      "showMetrics": true,
+      "showMetadata": true,
+      "showVersion": true,
+      "addZero": false,
+      "includeMetadata": false,
+      "cssVars": false,
+      "cssVarsFormat": "scss",
+      "hideFormats": true
+    },
+    "imagePref": {
+      "prefix": "icon-",
+      "png": false,
+      "useClassSelector": true,
+      "color": 0,
+      "bgColor": 16777215,
+      "classSelector": ".icon",
+      "name": "icomoon",
+      "height": 32,
+      "columns": 16,
+      "margin": 16
+    },
+    "historySize": 50,
+    "showCodes": true,
+    "gridSize": 16,
+    "quickUsageToken": {
+      "UntitledProject": "MTYxZDg5ZmQ5ODkyZjA0MTEzMzNjM2NhNzEyNDM5ZjkjMSMxNjYwMTIyMzg2IyMjNzc0ODcyNTQzMDli"
+    }
+  }
+}
