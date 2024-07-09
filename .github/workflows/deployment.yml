@@ -3,7 +3,7 @@ name: Deployment
 on:
   push:
     branches:
-      - carz-customer
+      - hrm
 
 env:
   TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -22,10 +22,10 @@ jobs:
           ref: core
           path: core
 
-      - name: Check out Git repository (carz-customer branch)
+      - name: Check out Git repository (hrm branch)
         uses: actions/checkout@v4
         with:
-          ref: carz-customer
+          ref: hrm
           path: app
 
       - name: Check out Git repository (gh-pages branch)
@@ -46,11 +46,11 @@ jobs:
       - name: Run npm start
         run: cd core && npm start
 
-      - name: Move carz-customer file
-        run: rm -rf gh-pages/carz-customer && mv core/output gh-pages/carz-customer
+      - name: Move hrm file
+        run: rm -rf gh-pages/hrm && mv core/output gh-pages/hrm
 
       - name: Create index file
-        run: cp gh-pages/carz-customer/demo.html gh-pages/carz-customer/index.html
+        run: cp gh-pages/hrm/demo.html gh-pages/hrm/index.html
 
       - name: Setup secret id_rsa
         env:
