@@ -38,7 +38,7 @@ jobs:
         uses: PacificPromise/macos-telegram-action@main
         with:
           type: topic
-          message: "🎬 - Start deploy icons Carz Customer"
+          message: "🎬 - Start deploy icons HRM"
 
       - name: Run npm install
         run: cd core && npm install
@@ -70,18 +70,18 @@ jobs:
           git remote set-url origin git@github.com:LibertyCarz/icons.git
           git status
           git add -A
-          git commit -m ':white_check_mark: update carz customer icon'
+          git commit -m ':white_check_mark: update HRM icon'
           git push origin gh-pages
 
       - name: Send success telegram message
         uses: PacificPromise/macos-telegram-action@main
         with:
           type: topic
-          message: "✅ - Success build icons Carz Customer"
+          message: "✅ - Success build icons HRM"
 
       - name: Send message failure
         if: failure()
         uses: PacificPromise/macos-telegram-action@main
         with:
           type: topic
-          message: "💥 - Failure build icons Carz Customer"
+          message: "💥 - Failure build icons HRM"
