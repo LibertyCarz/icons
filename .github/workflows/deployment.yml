@@ -3,7 +3,7 @@ name: Deployment
 on:
   push:
     branches:
-      - hrm
+      - tlr
 
 env:
   TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
