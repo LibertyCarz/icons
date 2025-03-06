@@ -22,10 +22,10 @@ jobs:
           ref: core
           path: core
 
-      - name: Check out Git repository (hrm branch)
+      - name: Check out Git repository (tlr branch)
         uses: actions/checkout@v4
         with:
-          ref: hrm
+          ref: tlr
           path: app
 
       - name: Check out Git repository (gh-pages branch)
@@ -38,7 +38,7 @@ jobs:
         uses: PacificPromise/macos-telegram-action@main
         with:
           type: topic
-          message: "🎬 - Start deploy icons HRM"
+          message: "🎬 - Start deploy icons TLR"
 
       - name: Run npm install
         run: cd core && npm install
@@ -46,11 +46,11 @@ jobs:
       - name: Run npm start
         run: cd core && npm start
 
-      - name: Move hrm file
-        run: rm -rf gh-pages/hrm && mv core/output gh-pages/hrm
+      - name: Move TLR file
+        run: rm -rf gh-pages/tlr && mv core/output gh-pages/tlr
 
       - name: Create index file
-        run: cp gh-pages/hrm/demo.html gh-pages/hrm/index.html
+        run: cp gh-pages/tlr/demo.html gh-pages/tlr/index.html
 
       - name: Setup secret id_rsa
         env:
@@ -70,18 +70,18 @@ jobs:
           git remote set-url origin git@github.com:LibertyCarz/icons.git
           git status
           git add -A
-          git commit -m ':white_check_mark: update HRM icon'
+          git commit -m ':white_check_mark: update TLR icon'
           git push origin gh-pages
 
       - name: Send success telegram message
         uses: PacificPromise/macos-telegram-action@main
         with:
           type: topic
-          message: "✅ - Success build icons HRM"
+          message: "✅ - Success build icons TLR"
 
       - name: Send message failure
         if: failure()
         uses: PacificPromise/macos-telegram-action@main
         with:
           type: topic
-          message: "💥 - Failure build icons HRM"
+          message: "💥 - Failure build icons TLR"
