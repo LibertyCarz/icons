@@ -14,3 +14,11 @@ Single-colored icons can be modified like so:
   color: red;
 }
 ========================================== */
+
+.icon-box_filled {
+  width: 1.0419921875em;
+}
+
+.icon-camera_filled {
+  width: 1.0419921875em;
+}
