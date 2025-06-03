@@ -94,10 +94,10 @@
   
         - name: Move file
           run: |
-            rm -rf gh-pages/carz-customer && mv core/output gh-pages/carz-customer
-            rm -rf gh-pages/hrm && mv core/output gh-pages/hrm
-            rm -rf gh-pages/tlr && mv core/output gh-pages/tlr
-            rm -rf gh-pages/carz-merchant && mv core/output gh-pages/carz-merchant
+            rm -rf gh-pages/carz-customer && mv carz-customer gh-pages/carz-customer
+            rm -rf gh-pages/hrm && mv hrm gh-pages/hrm
+            rm -rf gh-pages/tlr && mv tlr gh-pages/tlr
+            rm -rf gh-pages/carz-merchant && mv carz-merchant gh-pages/carz-merchant
   
         - name: Create index file
           run: | 
