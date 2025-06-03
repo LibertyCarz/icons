@@ -24,7 +24,6 @@
         fail-fast: true
         matrix:
           include: [{"name":"HRM","svg_path":"hrm"},{"name":"Thuan Loi Rubber","svg_path":"tlr"},{"name":"Carz Customer","svg_path":"carz-customer"},{"name":"Carz Merchant","svg_path":"carz-merchant"}]
-      timeout-minutes: 5
       steps:
         - name: Check out SVG
           uses: actions/checkout@v4
@@ -53,9 +52,21 @@
   
         - name: Run npm install
           run: cd core && npm install
-  
+
         - name: Run npm start
-          run: cd core && npm start
+          uses: nick-fields/retry@v3
+          with:
+            timeout_seconds: 60
+            max_attempts: 3
+            retry_on: error
+            command: cd core && npm start
+
+        - name: Upload to artifact
+          uses: actions/upload-artifact@v4
+          with:
+            name: ${{ matrix.svg_path }}
+            path: core/output
+            if-no-files-found: warn
   
         # - name: Move carz-customer file
         #   run: rm -rf gh-pages/carz-customer && mv core/output gh-pages/carz-customer
