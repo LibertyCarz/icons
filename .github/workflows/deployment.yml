@@ -18,7 +18,7 @@
   
   jobs:
     build:
-      name: Build iconmoon
+      name: Build icon ${{ matrix.name }}
       runs-on: ubuntu-22.04
       strategy:
         fail-fast: true
@@ -30,7 +30,7 @@
           uses: actions/checkout@v4
           with:
             sparse-checkout: SVG/${{ matrix.svg_path }}
-            path: SVG
+            path: app/SVG
 
         - name: Check out Git repository (Core branch)
           uses: actions/checkout@v4

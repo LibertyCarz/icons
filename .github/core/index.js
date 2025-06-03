@@ -4,7 +4,7 @@ const pipeline = require("./main");
 pipeline({
   // icons: ["SVG"],
   // icons: ["SVG/account.svg", "SVG/add.svg"],
-  svgDir: "../SVG",
+  svgDir: "../app/SVG",
   // names: ["account", "add"],
   selectionPath: "selection.json",
   outputDir: "output",
