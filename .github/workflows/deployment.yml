@@ -54,6 +54,7 @@
         - name: TEST
           run: | 
             echo "TEST"
+            cd app/SVG/
             ls -la
   
         - name: Run npm install
