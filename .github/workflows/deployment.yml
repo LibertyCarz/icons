@@ -55,12 +55,13 @@
           run: cd core && npm install
 
         - name: Run npm start
-          uses: nick-fields/retry@v3
-          with:
-            timeout_seconds: 60
-            max_attempts: 3
-            retry_on: error
-            command: cd core && npm start
+          run: cd core && npm start
+          # uses: nick-fields/retry@v3
+          # with:
+          #   timeout_seconds: 60
+          #   max_attempts: 3
+          #   retry_on: error
+          #   command: cd core && npm start
 
         - name: Upload to artifact
           uses: actions/upload-artifact@v4
