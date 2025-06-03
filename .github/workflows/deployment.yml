@@ -20,6 +20,7 @@
     build:
       name: Build icon ${{ matrix.name }}
       runs-on: ubuntu-22.04
+      continue-on-error: true
       strategy:
         fail-fast: true
         matrix:
