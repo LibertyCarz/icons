@@ -15,10 +15,42 @@ Single-colored icons can be modified like so:
 }
 ========================================== */
 
+.icon-box {
+  width: 0.9599609375em;
+}
+
 .icon-box_filled {
   width: 1.0419921875em;
 }
 
 .icon-camera_filled {
   width: 1.0419921875em;
+}
+
+.icon-config {
+  width: 0.9599609375em;
+}
+
+.icon-deliver {
+  width: 0.9599609375em;
+}
+
+.icon-distributor-02 {
+  width: 0.9599609375em;
+}
+
+.icon-overview {
+  width: 0.9599609375em;
+}
+
+.icon-product {
+  width: 0.9599609375em;
+}
+
+.icon-report {
+  width: 0.9599609375em;
+}
+
+.icon-shipment {
+  width: 0.9599609375em;
 }
