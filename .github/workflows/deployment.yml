@@ -30,8 +30,11 @@
         - name: Check out SVG
           uses: actions/checkout@v4
           with:
-            sparse-checkout: SVG/${{ matrix.svg_path }}/**
+            sparse-checkout: SVG/${{ matrix.svg_path }}
             path: app
+        
+        - name: Rename SVG folder
+          run: mv app/${{ matrix.svg_path }} app/SVG
 
         - name: Check out Git repository (Core branch)
           uses: actions/checkout@v4
