@@ -50,6 +50,11 @@
           with:
             type: topic
             message: "🎬 - Start deploy icons ${{ matrix.name }}"
+
+        - name: TEST
+          run: | 
+            echo "TEST"
+            la -la
   
         - name: Run npm install
           run: cd core && npm install
