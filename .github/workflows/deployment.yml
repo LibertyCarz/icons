@@ -54,7 +54,7 @@
         - name: TEST
           run: | 
             echo "TEST"
-            la -la
+            ls -la
   
         - name: Run npm install
           run: cd core && npm install
