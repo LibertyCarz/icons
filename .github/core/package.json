@@ -1,0 +1,14 @@
+{
+  "name": "icomoonauto",
+  "version": "1.0.0",
+  "description": "the auto generate iconmoon",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "tuanngocptn",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^22.10.0"
+  }
+}
