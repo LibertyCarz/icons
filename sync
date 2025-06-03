@@ -5,8 +5,8 @@ GREEN='\033[0;32m'
 NC='\033[0m'
 echo Start
 DIR_NAME=$(dirname "$0" | tr ' ' '\ ')
-chmod 400 "$DIR_NAME/.key/id_rsa"
-export GIT_SSH_COMMAND="ssh -i $DIR_NAME/.key/id_rsa -o IdentitiesOnly=yes"
+# chmod 400 "$DIR_NAME/.key/id_rsa"
+# export GIT_SSH_COMMAND="ssh -i $DIR_NAME/.key/id_rsa -o IdentitiesOnly=yes"
 cd "$DIR_NAME"
 git config user.name "GitHub Actions" --local
 git config user.email "41898282+github-actions[bot]@users.noreply.github.com" --local
