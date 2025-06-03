@@ -1,0 +1,97 @@
+---
+  name: Deployment
+  on:
+    push:
+      branches:
+        - main
+      paths:
+        - 'SVG/tlr/**'
+        - 'SVG/hrm/**'
+        - 'SVG/carz-customer/**'
+        - 'SVG/carz-merchant/**'
+  
+  env:
+    TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+    TELEGRAM_GROUP_ID: ${{ vars.TELEGRAM_GROUP_ID }}
+    TELEGRAM_TOPIC_ID: ${{ vars.TELEGRAM_TOPIC_ID }}
+  
+  jobs:
+    build:
+      name: Build iconmoon
+      runs-on: ubuntu-22.04
+      strategy:
+        fail-fast: true
+        matrix:
+          include: [{"name":"HRM","svg_path":"hrm"},{"name":"Thuan Loi Rubber","svg_path":"tlr"},{"name":"Carz Customer","svg_path":"carz-customer"},{"name":"Carz Merchant","svg_path":"carz-merchant"}]
+      timeout-minutes: 5
+      steps:
+        - name: Check out SVG
+          uses: actions/checkout@v4
+          with:
+            sparse-checkout: SVG/${{ matrix.svg_path }}
+            path: SVG
+
+        - name: Check out Git repository (Core branch)
+          uses: actions/checkout@v4
+          with:
+            sparse-checkout: .github/core
+            ref: core
+            path: core
+  
+        # - name: Check out Git repository (gh-pages branch)
+        #   uses: actions/checkout@v4
+        #   with:
+        #     ref: gh-pages
+        #     path: gh-pages
+  
+        - name: Send telegram message
+          uses: PacificPromise/macos-telegram-action@main
+          with:
+            type: topic
+            message: "🎬 - Start deploy icons ${{ matrix.name }}"
+  
+        - name: Run npm install
+          run: cd core && npm install
+  
+        - name: Run npm start
+          run: cd core && npm start
+  
+        # - name: Move carz-customer file
+        #   run: rm -rf gh-pages/carz-customer && mv core/output gh-pages/carz-customer
+  
+        # - name: Create index file
+        #   run: cp gh-pages/carz-customer/demo.html gh-pages/carz-customer/index.html
+  
+        # - name: Setup secret id_rsa
+        #   env:
+        #     ID_RSA: ${{ secrets.ID_RSA }}
+        #   run: echo "$ID_RSA" > gh-pages/.key/id_rsa
+  
+        # - name: Push
+        #   env:
+        #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        #   run: |
+        #     cd gh-pages
+        #     DIR_NAME=$(pwd)
+        #     chmod 400 "$DIR_NAME/.key/id_rsa"
+        #     export GIT_SSH_COMMAND="ssh -i $DIR_NAME/.key/id_rsa -o IdentitiesOnly=yes"
+        #     git config user.name "GitHub Actions" --local
+        #     git config user.email "41898282+github-actions[bot]@users.noreply.github.com" --local
+        #     git remote set-url origin git@github.com:LibertyCarz/icons.git
+        #     git status
+        #     git add -A
+        #     git commit -m ':white_check_mark: update carz customer icon'
+        #     git push origin gh-pages
+  
+        - name: Send success telegram message
+          uses: PacificPromise/macos-telegram-action@main
+          with:
+            type: topic
+            message: "✅ - Success build icons ${{ matrix.name }}"
+  
+        - name: Send message failure
+          if: failure()
+          uses: PacificPromise/macos-telegram-action@main
+          with:
+            type: topic
+            message: "💥 - Failure build icons ${{ matrix.name }}"
