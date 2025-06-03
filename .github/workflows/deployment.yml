@@ -42,35 +42,17 @@
             ref: core
             path: core
   
-        # - name: Check out Git repository (gh-pages branch)
-        #   uses: actions/checkout@v4
-        #   with:
-        #     ref: gh-pages
-        #     path: gh-pages
-  
         - name: Send telegram message
           uses: PacificPromise/macos-telegram-action@main
           with:
             type: topic
             message: "🎬 - Start deploy icons ${{ matrix.name }}"
-
-        - name: TEST
-          run: | 
-            echo "TEST"
-            cd app/SVG/
-            ls -la
   
         - name: Run npm install
           run: cd core && npm install
 
         - name: Run npm start
           run: cd core && npm start
-          # uses: nick-fields/retry@v3
-          # with:
-          #   timeout_seconds: 60
-          #   max_attempts: 3
-          #   retry_on: error
-          #   command: cd core && npm start
 
         - name: Upload to artifact
           uses: actions/upload-artifact@v4
@@ -78,6 +60,48 @@
             name: ${{ matrix.svg_path }}
             path: core/output
             if-no-files-found: warn
+  
+        - name: Send success telegram message
+          uses: PacificPromise/macos-telegram-action@main
+          with:
+            type: topic
+            message: "✅ - Success build icons ${{ matrix.name }}"
+  
+        - name: Send message failure
+          if: failure()
+          uses: PacificPromise/macos-telegram-action@main
+          with:
+            type: topic
+            message: "💥 - Failure build icons ${{ matrix.name }}"
+
+    deploy:
+      name: Deploy icons
+      needs: [build]
+      runs-on: ubuntu-latest
+      steps:
+        - name: Download from artifact
+          uses: actions/download-artifact@v4
+          with:
+            merge-multiple: true
+
+        - name: Test
+          run: ls -la
+
+        # - name: Generate result file
+        #   id: get-link
+        #   run: |
+        #     flattened_json=$(jq -sc 'map(.[])' *)
+        #     cleaned_json=$(echo "$flattened_json" | sed 's/^[ \t]*//' | tr -d '\n\r')
+        #     echo "value=$cleaned_json" >> $GITHUB_OUTPUT
+
+
+  
+        # - name: Check out Git repository (gh-pages branch)
+        #   uses: actions/checkout@v4
+        #   with:
+        #     ref: gh-pages
+        #     path: gh-pages
+
   
         # - name: Move carz-customer file
         #   run: rm -rf gh-pages/carz-customer && mv core/output gh-pages/carz-customer
@@ -105,16 +129,3 @@
         #     git add -A
         #     git commit -m ':white_check_mark: update carz customer icon'
         #     git push origin gh-pages
-  
-        - name: Send success telegram message
-          uses: PacificPromise/macos-telegram-action@main
-          with:
-            type: topic
-            message: "✅ - Success build icons ${{ matrix.name }}"
-  
-        - name: Send message failure
-          if: failure()
-          uses: PacificPromise/macos-telegram-action@main
-          with:
-            type: topic
-            message: "💥 - Failure build icons ${{ matrix.name }}"
