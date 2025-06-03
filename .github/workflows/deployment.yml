@@ -33,7 +33,7 @@
             path: source
         
         - name: Rename SVG folder
-          run: mv source/SVG/${{ matrix.svg_path }} app/SVG
+          run: mkdir -p app && cp -R source/SVG/${{ matrix.svg_path }} app/SVG
 
         - name: Check out Git repository (Core branch)
           uses: actions/checkout@v4
