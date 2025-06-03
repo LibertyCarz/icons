@@ -12,9 +12,7 @@
         - 'SVG/carz-merchant/**'
   
   env:
-    TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-    TELEGRAM_GROUP_ID: ${{ vars.TELEGRAM_GROUP_ID }}
-    TELEGRAM_TOPIC_ID: ${{ vars.TELEGRAM_TOPIC_ID }}
+    DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
   
   jobs:
     build:
@@ -42,10 +40,9 @@
             ref: core
             path: core
   
-        - name: Send telegram message
-          uses: PacificPromise/macos-telegram-action@main
+        - name: Send success telegram message
+          uses: tuanngocptn/discord-action@main
           with:
-            type: topic
             message: "🎬 - Start deploy icons ${{ matrix.name }}"
   
         - name: Run npm install
@@ -62,16 +59,14 @@
             if-no-files-found: warn
   
         - name: Send success telegram message
-          uses: PacificPromise/macos-telegram-action@main
+          uses: tuanngocptn/discord-action@main
           with:
-            type: topic
             message: "✅ - Success build icons ${{ matrix.name }}"
   
         - name: Send message failure
           if: failure()
-          uses: PacificPromise/macos-telegram-action@main
+          uses: tuanngocptn/discord-action@main
           with:
-            type: topic
             message: "💥 - Failure build icons ${{ matrix.name }}"
 
     deploy:
