@@ -16,8 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - name: send telegram message
-        uses: PacificPromise/macos-telegram-action@main
+      - name: Send success telegram message
+        uses: tuanngocptn/discord-action@main
         with:
-          type: topic
           message: "🏁 - Finish deployment Icons set: https://icons.libertycarz.com/"
