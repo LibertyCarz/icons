@@ -1,120 +1,119 @@
----
-  name: Deployment
-  on:
-    workflow_dispatch:
-    push:
-      branches:
-        - main
-      paths:
-        - 'SVG/tlr/**'
-        - 'SVG/hrm/**'
-        - 'SVG/carz-customer/**'
-        - 'SVG/carz-merchant/**'
-  
-  env:
-    DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-  
-  jobs:
-    build:
-      name: Build icon ${{ matrix.name }}
-      timeout-minutes: 3
-      runs-on: ubuntu-22.04
-      continue-on-error: true
-      strategy:
-        fail-fast: true
-        matrix:
-          include: [{"name":"HRM","svg_path":"hrm"},{"name":"Thuan Loi Rubber","svg_path":"tlr"},{"name":"Carz Customer","svg_path":"carz-customer"},{"name":"Carz Merchant","svg_path":"carz-merchant"}]
-      steps:
-        - name: Check out SVG
-          uses: actions/checkout@v4
-          with:
-            path: source
-        
-        - name: Rename SVG folder
-          run: mkdir -p app && cp -R source/SVG/${{ matrix.svg_path }} app/SVG
+name: Deployment
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'SVG/tlr/**'
+      - 'SVG/hrm/**'
+      - 'SVG/carz-customer/**'
+      - 'SVG/carz-merchant/**'
 
-        - name: Check out Git repository (Core branch)
-          uses: actions/checkout@v4
-          with:
-            sparse-checkout: .github/core
-            ref: core
-            path: core
-  
-        - name: Send success telegram message
-          uses: tuanngocptn/discord-action@main
-          with:
-            message: "🎬 - Start deploy icons ${{ matrix.name }}"
-  
-        - name: Run npm install
-          run: cd core && npm install
+env:
+  DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
 
-        - name: Run npm start
-          run: cd core && npm start
+jobs:
+  build:
+    name: Build icon ${{ matrix.name }}
+    timeout-minutes: 3
+    runs-on: ubuntu-22.04
+    continue-on-error: true
+    strategy:
+      fail-fast: true
+      matrix:
+        include: [{"name":"HRM","svg_path":"hrm"},{"name":"Thuan Loi Rubber","svg_path":"tlr"},{"name":"Carz Customer","svg_path":"carz-customer"},{"name":"Carz Merchant","svg_path":"carz-merchant"}]
+    steps:
+      - name: Check out SVG
+        uses: actions/checkout@v4
+        with:
+          path: source
+      
+      - name: Rename SVG folder
+        run: mkdir -p app && cp -R source/SVG/${{ matrix.svg_path }} app/SVG
 
-        - name: Upload to artifact
-          uses: actions/upload-artifact@v4
-          with:
-            name: ${{ matrix.svg_path }}
-            path: core/output
-            if-no-files-found: warn
-  
-        - name: Send success telegram message
-          uses: tuanngocptn/discord-action@main
-          with:
-            message: "✅ - Success build icons ${{ matrix.name }}"
-  
-        - name: Send message failure
-          if: failure()
-          uses: tuanngocptn/discord-action@main
-          with:
-            message: "💥 - Failure build icons ${{ matrix.name }}"
+      - name: Check out Git repository (Core branch)
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/core
+          ref: core
+          path: core
 
-    deploy:
-      name: Deploy icons
-      needs: [build]
-      runs-on: ubuntu-latest
-      steps:
-        - name: Download from artifact
-          uses: actions/download-artifact@v4
+      - name: Send success telegram message
+        uses: tuanngocptn/discord-action@main
+        with:
+          message: "🎬 - Start deploy icons ${{ matrix.name }}"
 
-        - name: Check out Git repository (gh-pages branch)
-          uses: actions/checkout@v4
-          with:
-            ref: gh-pages
-            path: gh-pages
+      - name: Run npm install
+        run: cd core && npm install
 
-  
-        - name: Move file
-          run: |
-            rm -rf gh-pages/carz-customer && mv carz-customer gh-pages/carz-customer
-            rm -rf gh-pages/hrm && mv hrm gh-pages/hrm
-            rm -rf gh-pages/tlr && mv tlr gh-pages/tlr
-            rm -rf gh-pages/carz-merchant && mv carz-merchant gh-pages/carz-merchant
-  
-        - name: Create index file
-          run: | 
-            cp gh-pages/carz-customer/demo.html gh-pages/carz-customer/index.html
-            cp gh-pages/hrm/demo.html gh-pages/hrm/index.html
-            cp gh-pages/tlr/demo.html gh-pages/tlr/index.html
-            cp gh-pages/carz-merchant/demo.html gh-pages/carz-merchant/index.html
-  
-        - name: Setup secret id_rsa
-          env:
-            ID_RSA: ${{ secrets.ID_RSA }}
-          run: echo "$ID_RSA" > gh-pages/.key/id_rsa
-  
-        - name: Push
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          run: |
-            cd gh-pages
-            DIR_NAME=$(pwd)
-            chmod 400 "$DIR_NAME/.key/id_rsa"
-            export GIT_SSH_COMMAND="ssh -i $DIR_NAME/.key/id_rsa -o IdentitiesOnly=yes"
-            git config user.name "GitHub Actions" --local
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com" --local
-            git remote set-url origin git@github.com:LibertyCarz/icons.git
-            git status
-            git add -A
-            git commit -m ':white_check_mark: update carz customer icon'
-            git push origin gh-pages
+      - name: Run npm start
+        run: cd core && npm start
+
+      - name: Upload to artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.svg_path }}
+          path: core/output
+          if-no-files-found: warn
+
+      - name: Send success telegram message
+        uses: tuanngocptn/discord-action@main
+        with:
+          message: "✅ - Success build icons ${{ matrix.name }}"
+
+      - name: Send message failure
+        if: failure()
+        uses: tuanngocptn/discord-action@main
+        with:
+          message: "💥 - Failure build icons ${{ matrix.name }}"
+
+  deploy:
+    name: Deploy icons
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download from artifact
+        uses: actions/download-artifact@v4
+
+      - name: Check out Git repository (gh-pages branch)
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+
+      - name: Move file
+        run: |
+          rm -rf gh-pages/carz-customer && mv carz-customer gh-pages/carz-customer
+          rm -rf gh-pages/hrm && mv hrm gh-pages/hrm
+          rm -rf gh-pages/tlr && mv tlr gh-pages/tlr
+          rm -rf gh-pages/carz-merchant && mv carz-merchant gh-pages/carz-merchant
+
+      - name: Create index file
+        run: | 
+          cp gh-pages/carz-customer/demo.html gh-pages/carz-customer/index.html
+          cp gh-pages/hrm/demo.html gh-pages/hrm/index.html
+          cp gh-pages/tlr/demo.html gh-pages/tlr/index.html
+          cp gh-pages/carz-merchant/demo.html gh-pages/carz-merchant/index.html
+
+      - name: Setup secret id_rsa
+        env:
+          ID_RSA: ${{ secrets.ID_RSA }}
+        run: echo "$ID_RSA" > gh-pages/.key/id_rsa
+
+      - name: Push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd gh-pages
+          DIR_NAME=$(pwd)
+          chmod 400 "$DIR_NAME/.key/id_rsa"
+          export GIT_SSH_COMMAND="ssh -i $DIR_NAME/.key/id_rsa -o IdentitiesOnly=yes"
+          git config user.name "GitHub Actions" --local
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com" --local
+          git remote set-url origin git@github.com:LibertyCarz/icons.git
+          git status
+          git add -A
+          git commit -m ':white_check_mark: update carz customer icon'
+          git push origin gh-pages
