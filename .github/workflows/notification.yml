@@ -1,0 +1,23 @@
+name: Notification
+
+on:
+  workflow_run:
+    workflows: [pages-build-deployment]
+    types:
+      - completed
+
+env:
+  TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+  TELEGRAM_GROUP_ID: ${{ vars.TELEGRAM_GROUP_ID }}
+  TELEGRAM_TOPIC_ID: ${{ vars.TELEGRAM_TOPIC_ID }}
+
+jobs:
+  on-success:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: send telegram message
+        uses: PacificPromise/macos-telegram-action@main
+        with:
+          type: topic
+          message: "🏁 - Finish deployment Icons set: https://icons.libertycarz.com/"
