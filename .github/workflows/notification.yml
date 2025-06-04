@@ -7,9 +7,7 @@ on:
       - completed
 
 env:
-  TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-  TELEGRAM_GROUP_ID: ${{ vars.TELEGRAM_GROUP_ID }}
-  TELEGRAM_TOPIC_ID: ${{ vars.TELEGRAM_TOPIC_ID }}
+  DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
 
 jobs:
   on-success:
