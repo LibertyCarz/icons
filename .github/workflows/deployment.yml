@@ -33,7 +33,7 @@ jobs:
         run: mkdir -p app && cp -R source/SVG/${{ matrix.svg_path }} app/SVG
 
       - name: Move core
-        run: mkdir -p core && cp -R .github/core/* core/
+        run: mkdir -p core && cp -R source/.github/core/* core/
 
       - name: Send success telegram message
         uses: tuanngocptn/discord-action@main
