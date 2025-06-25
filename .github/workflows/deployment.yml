@@ -35,7 +35,7 @@ jobs:
       - name: Move core
         run: mkdir -p core && cp -R source/.github/core/* core/
 
-      - name: Send success telegram message
+      - name: Send message
         uses: tuanngocptn/discord-action@main
         with:
           message: "🎬 - Start deploy icons ${{ matrix.name }}"
@@ -53,7 +53,7 @@ jobs:
           path: core/output
           if-no-files-found: warn
 
-      - name: Send success telegram message
+      - name: Send message
         uses: tuanngocptn/discord-action@main
         with:
           message: "✅ - Success build icons ${{ matrix.name }}"
