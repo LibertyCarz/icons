@@ -32,12 +32,8 @@ jobs:
       - name: Rename SVG folder
         run: mkdir -p app && cp -R source/SVG/${{ matrix.svg_path }} app/SVG
 
-      - name: Check out Git repository (Core branch)
-        uses: actions/checkout@v4
-        with:
-          sparse-checkout: .github/core
-          ref: core
-          path: core
+      - name: Move core
+        run: mkdir -p core && cp -R .github/core/* core/
 
       - name: Send success telegram message
         uses: tuanngocptn/discord-action@main
